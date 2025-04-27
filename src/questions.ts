@@ -4,7 +4,7 @@ interface Question {
     answer: string
 }
 
-const questions: Question[] = [
+export const questions: Question[] = [
     {
         question: "What is TypeScript?",
         options: ["A JavaScript library", "A CSS framework", "A superset of JavaScript", "A database system"],
