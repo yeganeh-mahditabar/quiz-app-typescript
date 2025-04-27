@@ -7,6 +7,7 @@ function Quiz() {
   const [score, setScore] = useState<number>(0)
   const [selectedOption, setSelectedOption] = useState<string>("")
   const [currentQuestion, setCurrentQuestion] = useState<number>(0)
+  const [isFinal, setIsFinal] = useState<boolean>(false)
 
 
   function handleAnswer(option:string){
@@ -14,6 +15,15 @@ function Quiz() {
     if(option == questions[currentQuestion].answer){
         setScore(score+1)
     }
+
+    setTimeout(()=>{
+        if(currentQuestion < questions.length){
+            setCurrentQuestion(currentQuestion+1)
+        }
+        else{
+            setIsFinal(true)
+        }
+    },1000)
 
   }    
   return (
@@ -23,8 +33,8 @@ function Quiz() {
             <ul>
                 {
                     questions[currentQuestion].options.map(
-                        (option:string)=> (
-                            <li onClick={()=> handleAnswer(option)}
+                        (option:string, index:number)=> (
+                            <li key={index} onClick={()=> handleAnswer(option)}
                             
                             >{option}</li>
                         )
