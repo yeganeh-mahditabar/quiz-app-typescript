@@ -17,7 +17,7 @@ function Quiz() {
     }
 
     setTimeout(()=>{
-        if(currentQuestion < questions.length){
+        if(currentQuestion + 1 < questions.length){
             setCurrentQuestion(currentQuestion+1)
         }
         else{
@@ -28,20 +28,36 @@ function Quiz() {
   }    
   return (
     <div className="quiz-container">
-        <div className="question-box">
-            <h3>{questions[currentQuestion].question}</h3>
-            <ul>
-                {
-                    questions[currentQuestion].options.map(
-                        (option:string, index:number)=> (
-                            <li key={index} onClick={()=> handleAnswer(option)}
+        {
+            isFinal ? (
+                <div className="result">
+                    <h2>Quiz completed</h2>
+                    <p>Your score is: {score} from {questions.length}</p>
+                </div>
+            ): (
+                <div className="question-box">
+                    <h3>{questions[currentQuestion].question}</h3>
+                    <ul>
+                        {
+                            questions[currentQuestion].options.map(
+                                (option:string, index:number)=> (
+                                    <li
+                                    className={
+                                        selectedOption == option ?
+                                        (option == questions[currentQuestion].answer ? "correct": "wrong") :
+                                        ""
+                                    }
+                                    
+                                    key={index} onClick={()=> handleAnswer(option)}
                             
-                            >{option}</li>
-                        )
-                    )
-                }
-            </ul>
-        </div>
+                                    >{option}</li>
+                                )
+                            )
+                        }
+                    </ul>
+                </div>
+                )
+        }
     </div>
   )
 }

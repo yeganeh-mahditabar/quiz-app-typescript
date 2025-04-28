@@ -46,17 +46,3 @@ li:hover {
     background: #f44336 !important;
     color: white;
 }
-
-button {
-    background: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 15px;
-}
-
-button:hover {
-    background: #0056b3;
-}
