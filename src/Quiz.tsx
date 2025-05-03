@@ -37,20 +37,22 @@ function Quiz() {
             ): (
                 <div className="question-box">
                     <h3>{questions[currentQuestion].question}</h3>
-                    <ul>
+                    <ul className="options-list">
                         {
                             questions[currentQuestion].options.map(
-                                (option:string, index:number)=> (
-                                    <li
-                                    className={
+                                (option, index)=> (
+                                  <li key={index}>
+                                    <button
+                                    className={`option-button ${
                                         selectedOption == option ?
-                                        (option == questions[currentQuestion].answer ? "correct": "wrong") :
+                                        (option === questions[currentQuestion].answer ? "correct": "wrong") :
                                         ""
-                                    }
+                                    }`}
                                     
-                                    key={index} onClick={()=> handleAnswer(option)}
+                                    onClick={()=> handleAnswer(option)}
                             
-                                    >{option}</li>
+                                    >{option}</button>
+                                  </li>
                                 )
                             )
                         }
